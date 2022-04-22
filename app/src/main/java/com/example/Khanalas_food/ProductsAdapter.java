@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHolder> {
-    private List<Product> mProducts;
+    private final List<Product> mProducts;
 
     // Pass in the contact array into the constructor
     public ProductsAdapter( List<Product> products) {
