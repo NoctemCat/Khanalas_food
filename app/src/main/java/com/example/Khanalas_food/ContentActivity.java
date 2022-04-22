@@ -46,19 +46,22 @@ public class ContentActivity extends AppCompatActivity {
                 R.string.navigation_drawer_open,
                 R.string.navigation_drawer_close);
         //set menu icon
-        drawerToggle.setHomeAsUpIndicator(R.drawable.ic_menu_camera);
+        drawerToggle.setHomeAsUpIndicator(R.drawable.menumore);
         drawerToggle.setDrawerIndicatorEnabled(false);
-        drawerToggle.setToolbarNavigationClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                drawer.openDrawer(GravityCompat.START);
-            }
-        });
+        drawerToggle.setToolbarNavigationClickListener(view -> drawer.openDrawer(GravityCompat.START));
+
+
 
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_content,
-                    new HomeFragment()).commit();
-            mCurrentFragId = R.id.nav_home;
+            getSupportFragmentManager().beginTransaction()
+                    .setReorderingAllowed(true)
+                    .replace(R.id.nav_host_fragment_content_content, new ScrollingFragment())
+                    .commit();
+            getSupportFragmentManager().beginTransaction()
+                    .setReorderingAllowed(true)
+                    .add(R.id.nav_host_fragment_content_content, AllProductsFragment.class, null)
+                    .commit();
+            mCurrentFragId = R.id.nav_products;
         }
 
         NavigationView navigationView = binding.navView;

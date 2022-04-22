@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/nav_products"
-        android:icon="@drawable/ic_menu_products"
-        android:title="products" />
+        android:icon="@drawable/products"
+        app:labelVisibilityMode="unlabeled"
+        android:title="" />
 
     <item
         android:id="@+id/nav_delivery"
-        android:title="delivery" />
+        android:icon="@drawable/delivery"
+        app:labelVisibilityMode="unlabeled"
+        android:title="" />
 
     <item
         android:id="@+id/nav_cart"
-        android:title="cart" />
+        android:icon="@drawable/cart"
+        app:labelVisibilityMode="unlabeled"
+        android:title="" />
 
 </menu>
