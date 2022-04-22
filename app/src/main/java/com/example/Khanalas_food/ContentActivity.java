@@ -52,8 +52,6 @@ public class ContentActivity extends AppCompatActivity {
         drawerToggle.setDrawerIndicatorEnabled(false);
         drawerToggle.setToolbarNavigationClickListener(view -> drawer.openDrawer(GravityCompat.START));
 
-
-
         if (savedInstanceState == null) {
 //            getSupportFragmentManager().beginTransaction()
 //                    .setReorderingAllowed(true)
@@ -115,15 +113,6 @@ public class ContentActivity extends AppCompatActivity {
             }
             switch (item.getItemId()) {
                 case R.id.nav_products:
-//                    getSupportFragmentManager().beginTransaction()
-//                            .setReorderingAllowed(true)
-//                            .replace(R.id.nav_host_fragment_content_content, new EmptyFragment())
-//                            .commit();
-//                    getSupportFragmentManager().beginTransaction()
-//                            .setReorderingAllowed(true)
-//                            .add(R.id.nav_host_fragment_content_content, AllProductsFragment.class, null)
-//                            .commit();
-
                     getSupportFragmentManager().beginTransaction()
                             .setReorderingAllowed(true)
                             .replace(R.id.nav_host_fragment_content_content, new ProductTypeFragment())
