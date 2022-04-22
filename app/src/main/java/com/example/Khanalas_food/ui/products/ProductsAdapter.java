@@ -1,4 +1,4 @@
-package com.example.Khanalas_food;
+package com.example.Khanalas_food.ui.products;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +7,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.Khanalas_food.R;
 
 import java.util.List;
 
@@ -33,10 +35,14 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
 
         TextView pidTextView = holder.pidTextView;
         pidTextView.setText(Integer.toString(product.getPid()));
+        TextView typeTextView = holder.typeTextView;
+        typeTextView.setText(product.getType());
         TextView nameTextView = holder.nameTextView;
         nameTextView.setText(product.getName());
         TextView priceTextView = holder.priceTextView;
-        priceTextView.setText(Integer.toString(product.getPrice()));
+        priceTextView.setText(Integer.toString(product.getPrice()) + "руб");
+        TextView countTextView = holder.countTextView;
+        countTextView.setText("В наличии: "+Integer.toString(product.getCount()));
     }
 
     @Override
@@ -47,8 +53,10 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView pidTextView;
+        public TextView typeTextView;
         public TextView nameTextView;
         public TextView priceTextView;
+        public TextView countTextView;
 
         public ViewHolder(View itemView) {
             // Stores the itemView in a public final member variable that can be used
@@ -56,8 +64,10 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
             super(itemView);
 
             pidTextView = (TextView) itemView.findViewById(R.id.pid);
+            typeTextView = (TextView) itemView.findViewById(R.id.type);
             nameTextView = (TextView) itemView.findViewById(R.id.name);
             priceTextView = (TextView) itemView.findViewById(R.id.price);
+            countTextView = (TextView) itemView.findViewById(R.id.count);
         }
     }
 }

@@ -20,11 +20,14 @@
         <entry key="..\:/Users/123/AndroidStudioProjects/Khanalas_food/app/src/main/res/layout/app_bar_content.xml" value="0.2" />
         <entry key="..\:/Users/123/AndroidStudioProjects/Khanalas_food/app/src/main/res/layout/content_content.xml" value="0.176" />
         <entry key="..\:/Users/123/AndroidStudioProjects/Khanalas_food/app/src/main/res/layout/fragment_about_us.xml" value="0.11144883485309018" />
+        <entry key="..\:/Users/123/AndroidStudioProjects/Khanalas_food/app/src/main/res/layout/fragment_all_products.xml" value="0.1" />
         <entry key="..\:/Users/123/AndroidStudioProjects/Khanalas_food/app/src/main/res/layout/fragment_cart.xml" value="0.11822916666666666" />
         <entry key="..\:/Users/123/AndroidStudioProjects/Khanalas_food/app/src/main/res/layout/fragment_delivery.xml" value="0.264" />
         <entry key="..\:/Users/123/AndroidStudioProjects/Khanalas_food/app/src/main/res/layout/fragment_gallery.xml" value="0.15625" />
         <entry key="..\:/Users/123/AndroidStudioProjects/Khanalas_food/app/src/main/res/layout/fragment_help.xml" value="0.1" />
         <entry key="..\:/Users/123/AndroidStudioProjects/Khanalas_food/app/src/main/res/layout/fragment_home.xml" value="0.15625" />
+        <entry key="..\:/Users/123/AndroidStudioProjects/Khanalas_food/app/src/main/res/layout/fragment_item.xml" value="0.11144883485309018" />
+        <entry key="..\:/Users/123/AndroidStudioProjects/Khanalas_food/app/src/main/res/layout/fragment_item_list.xml" value="0.2" />
         <entry key="..\:/Users/123/AndroidStudioProjects/Khanalas_food/app/src/main/res/layout/fragment_scrolling.xml" value="0.11510416666666666" />
         <entry key="..\:/Users/123/AndroidStudioProjects/Khanalas_food/app/src/main/res/layout/fragment_settings.xml" value="0.16" />
         <entry key="..\:/Users/123/AndroidStudioProjects/Khanalas_food/app/src/main/res/layout/fragment_slideshow.xml" value="0.15625" />

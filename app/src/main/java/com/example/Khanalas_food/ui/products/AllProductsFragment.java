@@ -11,13 +11,10 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.Khanalas_food.Product;
-import com.example.Khanalas_food.ProductsAdapter;
 import com.example.Khanalas_food.R;
 import com.example.Khanalas_food.URLs;
 
@@ -43,12 +40,15 @@ public class AllProductsFragment extends Fragment {
     private static final String TAG_PID = "pid";
     private static final String TAG_NAME = "name";
     private static final String TAG_PRICE = "price";
+    private static final String TAG_COUNT = "count";
+    private static final String TAG_TYPE = "type";
 
     // products JSONArray
 //    JSONArray productsJSON = null;
 //    private ArrayList<Product> products = new ArrayList<Product>();
 
     RecyclerView rvProducts;
+    String product_type = "";
 
     public AllProductsFragment() {
         super(R.layout.fragment_all_products);
@@ -59,6 +59,8 @@ public class AllProductsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        product_type =  getArguments().getString("product_type");
+
         View view = inflater.inflate(R.layout.fragment_all_products, container, false);
         rvProducts = (RecyclerView) view.findViewById(R.id.rvProducts);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2, LinearLayoutManager.VERTICAL, false);
@@ -80,7 +82,13 @@ public class AllProductsFragment extends Fragment {
 
             JSONObject json = null;
             try {
-                URL url = new URL(URLs.URL_ALL_PRODUCTS);
+                String urlstring = URLs.URL_ALL_PRODUCTS;
+                if(!product_type.isEmpty()){
+                    urlstring += "?type=";
+                    urlstring += product_type;
+                }
+
+                URL url = new URL(urlstring);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
                 connection.setDoOutput(true);
@@ -131,8 +139,10 @@ public class AllProductsFragment extends Fragment {
                             int id = c.getInt(TAG_PID);
                             String name = c.getString(TAG_NAME);
                             int price = c.getInt(TAG_PRICE);
+                            String type = c.getString(TAG_TYPE);
+                            int count = c.getInt(TAG_COUNT);
 
-                            Product pro =new Product(id, name, price);
+                            Product pro =new Product(id,type, name, price, count);
                             products.add(pro);
                         }
                     } else {

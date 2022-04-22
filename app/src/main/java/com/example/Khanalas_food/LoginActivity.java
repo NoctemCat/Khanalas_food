@@ -80,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     //if no error in response
                     if (!obj.getBoolean("error")) {
-                        Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
 
                         //getting the user from the response
                         JSONObject userJson = obj.getJSONObject("user");
@@ -102,7 +102,9 @@ public class LoginActivity extends AppCompatActivity {
                         finish();
                         startActivity(new Intent(getApplicationContext(), ContentActivity.class));
                     } else {
-                        Toast.makeText(getApplicationContext(), "Invalid username or password", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseContext(), "Invalid username or password", Toast.LENGTH_SHORT).show();
+                        editTextLogin.setError("Неверный логин или пароль");
+                        editTextLogin.requestFocus();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
