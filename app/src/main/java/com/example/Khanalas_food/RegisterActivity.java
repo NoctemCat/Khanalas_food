@@ -6,26 +6,25 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
-public class LoginActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(R.style.Theme_Khanalas_food_NoActionBar);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_register);
 
-        Button buttonLogin = (Button) findViewById(R.id.buttonLogin);
-        Button buttonGoToRegister = (Button) findViewById(R.id.buttonGoToRegister);
+        Button buttonRegister = (Button) findViewById(R.id.buttonRegister);
+        Button buttonGoToLogin = (Button) findViewById(R.id.buttonGoLogin);
 
-        buttonLogin.setOnClickListener(view -> {
+        buttonRegister.setOnClickListener(view -> {
             // Launching All products Activity
             Intent i = new Intent(getApplicationContext(), ContentActivity.class);
             startActivity(i);
         });
 
-        buttonGoToRegister.setOnClickListener(view -> {
+        buttonGoToLogin.setOnClickListener(view -> {
             // Launching All products Activity
-            Intent i = new Intent(getApplicationContext(), RegisterActivity.class);
+            Intent i = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(i);
         });
     }

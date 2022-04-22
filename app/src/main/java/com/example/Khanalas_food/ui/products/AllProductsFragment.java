@@ -45,8 +45,8 @@ public class AllProductsFragment extends Fragment {
     private static final String TAG_PRICE = "price";
 
     // products JSONArray
-    JSONArray productsJSON = null;
-    private MutableLiveData<ArrayList<Product>> products = new MutableLiveData<ArrayList<Product>>();
+//    JSONArray productsJSON = null;
+//    private ArrayList<Product> products = new ArrayList<Product>();
 
     RecyclerView rvProducts;
 
@@ -63,7 +63,6 @@ public class AllProductsFragment extends Fragment {
         rvProducts = (RecyclerView) view.findViewById(R.id.rvProducts);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2, LinearLayoutManager.VERTICAL, false);
         rvProducts.setLayoutManager(gridLayoutManager);
-        rvProducts.setAdapter(new ProductsAdapter(products.getValue()));
         return view;
     }
 
@@ -110,8 +109,8 @@ public class AllProductsFragment extends Fragment {
                 e.printStackTrace();
             }
 
-            ArrayList<Product> prods = new ArrayList<Product>();
             // Check your log cat for JSON response
+            ArrayList<Product> products = new ArrayList<>();
             if (json != null) {
                 try {
                     Log.d("All Products: ", json.toString());
@@ -122,7 +121,7 @@ public class AllProductsFragment extends Fragment {
                     if (success == 1) {
                         // products found
                         // Getting Array of Products
-                        productsJSON = json.getJSONArray(TAG_PRODUCTS);
+                        JSONArray productsJSON = json.getJSONArray(TAG_PRODUCTS);
 
                         // looping through All Products
                         for (int i = 0; i < productsJSON.length(); i++) {
@@ -133,7 +132,8 @@ public class AllProductsFragment extends Fragment {
                             String name = c.getString(TAG_NAME);
                             int price = c.getInt(TAG_PRICE);
 
-                            prods.add(new Product(id, name, price));
+                            Product pro =new Product(id, name, price);
+                            products.add(pro);
                         }
                     } else {
                         Log.d("All Products: ", "no products found");
@@ -147,16 +147,8 @@ public class AllProductsFragment extends Fragment {
 
             handler.post(() -> {
                 //UI Thread work here
-                rvProducts.setAdapter(new ProductsAdapter(prods));
+                rvProducts.setAdapter(new ProductsAdapter(products));
             });
         });
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-
-        rvProducts.setAdapter(null);
-        rvProducts = null;
     }
 }

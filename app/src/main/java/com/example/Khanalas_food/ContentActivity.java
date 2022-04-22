@@ -1,5 +1,6 @@
 package com.example.Khanalas_food;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -8,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.navigation.ui.AppBarConfiguration;
 
 import com.example.Khanalas_food.databinding.ActivityContentBinding;
 import com.example.Khanalas_food.ui.cart.CartFragment;
@@ -21,15 +21,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 public class ContentActivity extends AppCompatActivity {
-    private AppBarConfiguration mAppBarConfiguration;
-    private ActivityContentBinding binding;
     private int mCurrentFragId;
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityContentBinding.inflate(getLayoutInflater());
+        com.example.Khanalas_food.databinding.ActivityContentBinding binding = ActivityContentBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 //        setSupportActionBar(binding.appBarContent.toolbar);
 
@@ -50,7 +49,7 @@ public class ContentActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .setReorderingAllowed(true)
-                    .replace(R.id.nav_host_fragment_content_content, new ScrollingFragment())
+                    .replace(R.id.nav_host_fragment_content_content, new EmptyFragment())
                     .commit();
             getSupportFragmentManager().beginTransaction()
                     .setReorderingAllowed(true)
@@ -102,7 +101,7 @@ public class ContentActivity extends AppCompatActivity {
                 case R.id.nav_products:
                     getSupportFragmentManager().beginTransaction()
                             .setReorderingAllowed(true)
-                            .replace(R.id.nav_host_fragment_content_content, new ScrollingFragment())
+                            .replace(R.id.nav_host_fragment_content_content, new EmptyFragment())
                             .commit();
                     getSupportFragmentManager().beginTransaction()
                             .setReorderingAllowed(true)

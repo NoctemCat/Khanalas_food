@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_bg"
-    tools:context=".LoginActivity">
+    android:background="@drawable/reg_bg"
+    tools:context=".RegisterActivity">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.44">
+        app:layout_constraintVertical_bias="0.75">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,6 +24,7 @@
             android:layout_centerVertical="true"
             android:orientation="vertical"
             android:padding="10dp">
+
 
             <EditText
                 android:id="@+id/editTextLogin"
@@ -35,7 +36,46 @@
                 android:hint="Логин"
                 android:inputType="text"
                 android:minHeight="48dp"
-                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:textColorHint="#757575" />
+
+            <EditText
+                android:id="@+id/editTextEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/rounded_edit_text"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:minHeight="48dp"
+                android:paddingLeft="10dp"
+                android:textColorHint="#757575" />
+
+            <EditText
+                android:id="@+id/editTextPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/rounded_edit_text"
+                android:hint="Телефон"
+                android:inputType="textEmailAddress"
+                android:minHeight="48dp"
+                android:paddingLeft="10dp"
+                android:textColorHint="#757575" />
+
+            <EditText
+                android:id="@+id/editTextAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/rounded_edit_text"
+                android:hint="Адрес"
+                android:inputType="textEmailAddress"
+                android:minHeight="48dp"
+                android:paddingLeft="10dp"
                 android:textColorHint="#757575" />
 
             <EditText
@@ -43,32 +83,44 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="2dp"
                 android:background="@drawable/rounded_edit_text"
                 android:fontFamily="sans-serif"
                 android:hint="Пароль"
-                android:importantForAutofill="no"
                 android:inputType="textPassword"
                 android:minHeight="48dp"
-                android:paddingStart="10dp"
+                android:paddingLeft="10dp"
+                android:textColorHint="#757575" />
+
+            <EditText
+                android:id="@+id/editTextPassword2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/rounded_edit_text"
+                android:fontFamily="sans-serif"
+                android:hint="Повторить пароль"
+                android:inputType="textPassword"
+                android:minHeight="48dp"
+                android:paddingLeft="10dp"
                 android:textColorHint="#757575" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/buttonLogin"
+                android:id="@+id/buttonRegister"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Вход"
+                android:text="Зарегистрироваться"
                 app:backgroundTint="@color/green_color"
-                app:cornerRadius="16dp"
-                tools:ignore="TextContrastCheck" />
+                app:cornerRadius="16dp" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/buttonGoToRegister"
+                android:id="@+id/buttonGoLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="Регистрация"
+                android:text="Войти"
                 app:backgroundTint="@color/accent_color"
                 app:cornerRadius="16dp" />
 
@@ -81,6 +133,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:visibility="gone" />
+
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
