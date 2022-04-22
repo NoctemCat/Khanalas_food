@@ -13,10 +13,10 @@ import androidx.navigation.ui.AppBarConfiguration;
 import com.example.Khanalas_food.databinding.ActivityContentBinding;
 import com.example.Khanalas_food.ui.cart.CartFragment;
 import com.example.Khanalas_food.ui.delivery.DeliveryFragment;
-import com.example.Khanalas_food.ui.gallery.HelpFragment;
-import com.example.Khanalas_food.ui.home.SettingsFragment;
-import com.example.Khanalas_food.ui.showproducts.AllProductsFragment;
-import com.example.Khanalas_food.ui.slideshow.AboutUsFragment;
+import com.example.Khanalas_food.ui.help.HelpFragment;
+import com.example.Khanalas_food.ui.settings.SettingsFragment;
+import com.example.Khanalas_food.ui.products.AllProductsFragment;
+import com.example.Khanalas_food.ui.about_us.AboutUsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
