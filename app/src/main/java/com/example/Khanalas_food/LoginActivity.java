@@ -14,6 +14,13 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        //if the user is already logged in we will directly start the profile activity
+        if (SharedPrefManager.getInstance(this).isLoggedIn()) {
+            finish();
+            startActivity(new Intent(this, ContentActivity.class));
+            return;
+        }
+
         Button buttonLogin = (Button) findViewById(R.id.buttonLogin);
         Button buttonGoToRegister = (Button) findViewById(R.id.buttonGoToRegister);
 

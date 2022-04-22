@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.Khanalas_food.Product;
 import com.example.Khanalas_food.ProductsAdapter;
 import com.example.Khanalas_food.R;
+import com.example.Khanalas_food.URLs;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,7 +36,6 @@ import java.util.concurrent.Executors;
 
 public class AllProductsFragment extends Fragment {
     // url to get all products list
-    private static final String url_all_products = "http://192.168.0.62:81/get_all_products.php";
 
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
@@ -80,7 +80,7 @@ public class AllProductsFragment extends Fragment {
 
             JSONObject json = null;
             try {
-                URL url = new URL(url_all_products);
+                URL url = new URL(URLs.URL_ALL_PRODUCTS);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
                 connection.setDoOutput(true);

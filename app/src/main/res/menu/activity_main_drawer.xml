@@ -13,5 +13,8 @@
         <item
             android:id="@+id/nav_about_us"
             android:title="@string/menu_about_us" />
+        <item
+            android:id="@+id/nav_log_out"
+            android:title="Выйти" />
     </group>
 </menu>
