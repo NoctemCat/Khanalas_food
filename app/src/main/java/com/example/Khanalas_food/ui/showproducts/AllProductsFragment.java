@@ -66,9 +66,6 @@ public class AllProductsFragment extends Fragment {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2, LinearLayoutManager.VERTICAL, false);
         rvProducts.setLayoutManager(gridLayoutManager);
         rvProducts.setAdapter(new ProductsAdapter(products.getValue()));
-
-        Log.d("gg","create allproducts");
-
         return view;
     }
 
@@ -153,8 +150,6 @@ public class AllProductsFragment extends Fragment {
             handler.post(() -> {
                 //UI Thread work here
                 rvProducts.setAdapter(new ProductsAdapter(prods));
-
-                Log.d("gg: ", "finished async");
             });
         });
     }

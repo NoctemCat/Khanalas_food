@@ -30,7 +30,6 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
         View contactView = inflater.inflate(R.layout.grid_card, viewGroup, false);
 
         ViewHolder viewHolder = new ViewHolder(contactView);
-        Log.d("gg", "createViewHolder");
         return viewHolder;
     }
 
@@ -44,8 +43,6 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
         nameTextView.setText(product.getName());
         TextView priceTextView = holder.priceTextView;
         priceTextView.setText(Integer.toString(product.getPrice()));
-
-        Log.d("gg", "bindViewHolder");
     }
 
     @Override

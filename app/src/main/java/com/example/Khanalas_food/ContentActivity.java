@@ -28,6 +28,7 @@ import com.google.android.material.navigation.NavigationView;
 public class ContentActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityContentBinding binding;
+    private int mCurrentFragId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,15 +40,6 @@ public class ContentActivity extends AppCompatActivity {
 
         DrawerLayout drawer = binding.drawerLayout;
         Toolbar toolbar = binding.appBarContent.toolbar;
-//        final NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_content_content);
-//        final NavController navController = navHostFragment.getNavController();
-//        mAppBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph())
-//                .setOpenableLayout(drawer)
-//                .build();
-//
-//        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-//        NavigationUI.setupWithNavController(navigationView, navController);
-//        NavigationUI.setupWithNavController(bottom, navController);
 
         // set custom toggle menu to open and close drawer
         ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, drawer, toolbar,
@@ -66,10 +58,14 @@ public class ContentActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_content,
                     new HomeFragment()).commit();
+            mCurrentFragId = R.id.nav_home;
         }
 
         NavigationView navigationView = binding.navView;
         navigationView.setNavigationItemSelectedListener(item->{
+            if (mCurrentFragId == item.getItemId()){
+                return true;
+            }
             switch (item.getItemId()) {
                 case R.id.nav_home:
                     getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_content,
@@ -89,11 +85,15 @@ public class ContentActivity extends AppCompatActivity {
                 default:
                     break;
             }
+            mCurrentFragId = item.getItemId();
             return true;
         });
 
         BottomNavigationView bottom = binding.appBarContent.navBottomView;
         bottom.setOnItemSelectedListener(item->{
+            if (mCurrentFragId == item.getItemId()){
+                return true;
+            }
             switch (item.getItemId()) {
                 case R.id.nav_products:
                     getSupportFragmentManager().beginTransaction()
@@ -119,6 +119,7 @@ public class ContentActivity extends AppCompatActivity {
                 default:
                     break;
             }
+            mCurrentFragId = item.getItemId();
             return true;
         });
 
