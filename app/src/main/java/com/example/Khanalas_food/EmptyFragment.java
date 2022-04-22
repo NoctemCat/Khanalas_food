@@ -9,8 +9,8 @@ import androidx.fragment.app.Fragment;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-public  class ScrollingFragment extends Fragment {
-    public ScrollingFragment(){
+public  class EmptyFragment extends Fragment {
+    public EmptyFragment(){
     }
 
     @Nullable
