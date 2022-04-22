@@ -1,6 +1,5 @@
 package com.example.Khanalas_food.ui.showproducts;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -31,7 +30,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -53,7 +51,7 @@ public class AllProductsFragment extends Fragment {
     RecyclerView rvProducts;
 
     public AllProductsFragment() {
-        super(R.layout.all_products);
+        super(R.layout.fragment_all_products);
     }
 
     @Nullable
@@ -61,7 +59,7 @@ public class AllProductsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.all_products, container, false);
+        View view = inflater.inflate(R.layout.fragment_all_products, container, false);
         rvProducts = (RecyclerView) view.findViewById(R.id.rvProducts);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2, LinearLayoutManager.VERTICAL, false);
         rvProducts.setLayoutManager(gridLayoutManager);

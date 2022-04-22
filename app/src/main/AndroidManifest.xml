@@ -18,18 +18,6 @@
             android:label="@string/title_activity_content"
             android:theme="@style/Theme.Android_test.NoActionBar" />
         <activity
-            android:name=".EditProductActivity"
-            android:exported="false"
-            android:label="Edit Product" />
-        <activity
-            android:name=".NewProductActivity"
-            android:exported="false"
-            android:label="Add New Product" />
-        <activity
-            android:name=".AllProductsActivity"
-            android:exported="false"
-            android:label="All Products" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

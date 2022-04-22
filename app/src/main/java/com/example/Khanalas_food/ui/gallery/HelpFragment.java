@@ -1,23 +1,25 @@
-package com.example.Khanalas_food;
+package com.example.Khanalas_food.ui.gallery;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-import androidx.fragment.app.Fragment;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
-public  class ScrollingFragment extends Fragment {
-    public ScrollingFragment(){
-    }
+import com.example.Khanalas_food.R;
 
+public class HelpFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_empty, container, false);
+        View view = inflater.inflate(R.layout.fragment_help, container, false);
+        return view;
     }
 }

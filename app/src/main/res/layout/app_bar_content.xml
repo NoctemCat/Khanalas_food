@@ -57,7 +57,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout2"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_settings" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

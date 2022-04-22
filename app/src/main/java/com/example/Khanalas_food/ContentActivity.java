@@ -1,27 +1,22 @@
 package com.example.Khanalas_food;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
+import android.view.MenuItem;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import com.example.Khanalas_food.databinding.ActivityContentBinding;
 import com.example.Khanalas_food.ui.cart.CartFragment;
 import com.example.Khanalas_food.ui.delivery.DeliveryFragment;
-import com.example.Khanalas_food.ui.gallery.GalleryFragment;
-import com.example.Khanalas_food.ui.home.HomeFragment;
+import com.example.Khanalas_food.ui.gallery.HelpFragment;
+import com.example.Khanalas_food.ui.home.SettingsFragment;
 import com.example.Khanalas_food.ui.showproducts.AllProductsFragment;
-import com.example.Khanalas_food.ui.slideshow.SlideshowFragment;
+import com.example.Khanalas_food.ui.slideshow.AboutUsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
@@ -65,24 +60,27 @@ public class ContentActivity extends AppCompatActivity {
         }
 
         NavigationView navigationView = binding.navView;
+        BottomNavigationView bottom = binding.appBarContent.navBottomView;
+        bottom.setItemIconTintList(null);
+
         navigationView.setNavigationItemSelectedListener(item->{
             if (mCurrentFragId == item.getItemId()){
                 return true;
             }
             switch (item.getItemId()) {
-                case R.id.nav_home:
+                case R.id.nav_settings:
                     getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_content,
-                            new HomeFragment()).commit();
+                            new SettingsFragment()).commit();
                     drawer.closeDrawers();
                     break;
-                case R.id.nav_gallery:
+                case R.id.nav_help:
                     getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_content,
-                            new GalleryFragment()).commit();
+                            new HelpFragment()).commit();
                     drawer.closeDrawers();
                     break;
-                case R.id.nav_slideshow:
+                case R.id.nav_about_us:
                     getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_content,
-                            new SlideshowFragment()).commit();
+                            new AboutUsFragment()).commit();
                     drawer.closeDrawers();
                     break;
                 default:
@@ -92,8 +90,11 @@ public class ContentActivity extends AppCompatActivity {
             return true;
         });
 
-        BottomNavigationView bottom = binding.appBarContent.navBottomView;
         bottom.setOnItemSelectedListener(item->{
+            MenuItem nav_item = navigationView.getMenu().findItem(mCurrentFragId);
+            if(nav_item != null){
+                nav_item.setChecked(false);
+            }
             if (mCurrentFragId == item.getItemId()){
                 return true;
             }

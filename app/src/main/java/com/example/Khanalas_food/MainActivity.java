@@ -26,12 +26,5 @@ public class MainActivity extends AppCompatActivity {
             Intent i = new Intent(getApplicationContext(), ContentActivity.class);
             startActivity(i);
         });
-
-        // view products click event
-        btnNewProduct.setOnClickListener(view -> {
-            // Launching create new product activity
-            Intent i = new Intent(getApplicationContext(), AllProductsActivity.class);
-            startActivity(i);
-        });
     }
 }

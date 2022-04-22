@@ -6,28 +6,28 @@
     app:startDestination="@+id/nav_delivery">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.example.Khanalas_food.ui.home.HomeFragment"
+        android:id="@+id/nav_settings"
+        android:name="com.example.Khanalas_food.ui.home.SettingsFragment"
         android:label=""
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_settings" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.Khanalas_food.ui.gallery.GalleryFragment"
+        android:id="@+id/nav_help"
+        android:name="com.example.Khanalas_food.ui.gallery.HelpFragment"
         android:label=""
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_help" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.Khanalas_food.ui.slideshow.SlideshowFragment"
+        android:id="@+id/nav_about_us"
+        android:name="com.example.Khanalas_food.ui.slideshow.AboutUsFragment"
         android:label=""
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_about_us" />
 
     <fragment
         android:id="@+id/nav_products"
         android:name="com.example.Khanalas_food.ui.showproducts.AllProductsFragment"
         android:label=""
-        tools:layout="@layout/all_products" />
+        tools:layout="@layout/fragment_all_products" />
 
     <fragment
         android:id="@+id/nav_delivery"

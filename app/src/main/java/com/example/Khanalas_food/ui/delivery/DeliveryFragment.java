@@ -25,7 +25,6 @@ public class DeliveryFragment extends Fragment {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_delivery, container, false);
-        Log.d("App", "Delivery craeted");
         return view;
     }
 }
