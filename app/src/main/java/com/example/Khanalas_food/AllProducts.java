@@ -3,6 +3,8 @@ package com.example.Khanalas_food;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,10 +23,12 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class AllProducts extends AppCompatActivity {
     // url to get all products list
-    private static String url_all_products = "http://192.168.0.62:81/get_all_products.php";
+    private static final String url_all_products = "http://192.168.0.62:81/get_all_products.php";
 
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
@@ -45,29 +49,13 @@ public class AllProducts extends AppCompatActivity {
         setContentView(R.layout.all_products);
 
         // Lookup the recyclerview in activity layout
-        new AllProducts.LoadAllProducts().execute();
-    }
+//        new AllProducts.LoadAllProducts().execute();
 
-    class LoadAllProducts extends AsyncTask<String, String, String> {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Handler handler = new Handler(Looper.getMainLooper());
 
-        /**
-         * Before starting background thread Show Progress Dialog
-         */
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-//            pDialog = new ProgressDialog(AllProductsActivity.this);
-//            pDialog.setMessage("Loading products. Please wait...");
-//            pDialog.setIndeterminate(false);
-//            pDialog.setCancelable(false);
-//            pDialog.show();
-        }
-
-        /**
-         * getting All products from url
-         */
-        protected String doInBackground(String... args) {
-            // Building Parameters
+        executor.execute(() -> {
+            //Background work here
             Log.d("Get line: ", "Beginning async");
 
             JSONObject json = null;
@@ -136,27 +124,13 @@ public class AllProducts extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            return null;
-        }
-
-        /**
-         * After completing background task Dismiss the progress dialog
-         **/
-        protected void onPostExecute(String file_url) {
-            // dismiss the dialog after getting all products
-//            pDialog.dismiss();
-            // updating UI from Background Thread
-            runOnUiThread(new Runnable() {
-                public void run() {
-                    /**
-                     * Updating parsed JSON data into ListView
-                     * */
-                    RecyclerView rvProducts = (RecyclerView) findViewById(R.id.rvProducts);
-                    ProductsAdapter adapter = new ProductsAdapter(products);
-                    rvProducts.setAdapter(adapter);
-                    rvProducts.setLayoutManager(new GridLayoutManager(context, 2));
-                }
+            handler.post(() -> {
+                //UI Thread work here
+                RecyclerView rvProducts = (RecyclerView) findViewById(R.id.rvProducts);
+                ProductsAdapter adapter = new ProductsAdapter(products);
+                rvProducts.setAdapter(adapter);
+                rvProducts.setLayoutManager(new GridLayoutManager(context, 2));
             });
-        }
+        });
     }
 }
