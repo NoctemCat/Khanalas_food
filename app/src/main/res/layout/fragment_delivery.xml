@@ -2,18 +2,14 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical"
-    tools:context=".ui.showproducts.AllProductsFragment">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.delivery.DeliveryFragment">
 
-    <!-- Main ListView
-          Always give id value as list(@android:id/list)
-     -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvProducts"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="delivery fragment"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -1,6 +1,7 @@
 package com.example.Khanalas_food;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,9 @@ import java.util.List;
 
 public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHolder> {
     private List<Product> mProducts;
+
+    public ProductsAdapter() {
+    }
     // Pass in the contact array into the constructor
     public ProductsAdapter(List<Product> products) {
         mProducts = products;
@@ -22,11 +26,12 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
     @Override
     public ProductsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
-        LayoutInflater inflater = LayoutInflater.from(context);
+        LayoutInflater inflater = LayoutInflater.from(context.getApplicationContext());
 
         View contactView = inflater.inflate(R.layout.grid_card, parent, false);
 
         ViewHolder viewHolder = new ViewHolder(contactView);
+        Log.d("gg", "createViewHolder");
         return viewHolder;
     }
 
@@ -40,10 +45,13 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
         nameTextView.setText(product.getName());
         TextView priceTextView = holder.priceTextView;
         priceTextView.setText(Integer.toString(product.getPrice()));
+
+        Log.d("gg", "bindViewHolder");
     }
 
     @Override
     public int getItemCount() {
+        if (mProducts == null) return 0;
         return mProducts.size();
     }
 

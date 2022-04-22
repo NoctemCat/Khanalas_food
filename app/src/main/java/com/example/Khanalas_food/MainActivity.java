@@ -23,14 +23,14 @@ public class MainActivity extends AppCompatActivity {
         // view products click event
         btnViewProducts.setOnClickListener(view -> {
             // Launching All products Activity
-            Intent i = new Intent(getApplicationContext(), AllProductsActivity.class);
+            Intent i = new Intent(getApplicationContext(), ContentActivity.class);
             startActivity(i);
         });
 
         // view products click event
         btnNewProduct.setOnClickListener(view -> {
             // Launching create new product activity
-            Intent i = new Intent(getApplicationContext(), NewProductActivity.class);
+            Intent i = new Intent(getApplicationContext(), AllProductsActivity.class);
             startActivity(i);
         });
     }

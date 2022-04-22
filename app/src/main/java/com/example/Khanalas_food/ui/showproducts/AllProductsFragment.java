@@ -1,4 +1,4 @@
-package com.example.Khanalas_food;
+package com.example.Khanalas_food.ui.showproducts;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,7 +12,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.Khanalas_food.Product;
+import com.example.Khanalas_food.ProductsAdapter;
+import com.example.Khanalas_food.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,7 +32,7 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class AllProducts extends Fragment {
+public class AllProductsFragment extends Fragment {
     // url to get all products list
     private static final String url_all_products = "http://192.168.0.62:81/get_all_products.php";
 
@@ -43,8 +48,9 @@ public class AllProducts extends Fragment {
     ArrayList<Product> products = new ArrayList<>();
 
     RecyclerView rvProducts;
+    RecyclerView.LayoutManager gridLayoutManager;
 
-    public AllProducts() {
+    public AllProductsFragment() {
         super(R.layout.all_products);
     }
 
@@ -55,6 +61,15 @@ public class AllProducts extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.all_products, container, false);
         rvProducts = (RecyclerView) view.findViewById(R.id.rvProducts);
+        gridLayoutManager = new GridLayoutManager(getContext(), 2, LinearLayoutManager.VERTICAL, false);
+        rvProducts.setLayoutManager(gridLayoutManager);
+
+        products.add(new Product(12, "dsd", 123));
+        products.add(new Product(22, "ddd", 222));
+        ProductsAdapter adapter = new ProductsAdapter(products);
+        rvProducts.setAdapter(adapter);
+
+        Log.d("gg","create allproducts");
         return view;
     }
 
@@ -140,8 +155,19 @@ public class AllProducts extends Fragment {
                 //UI Thread work here
                 ProductsAdapter adapter = new ProductsAdapter(products);
                 rvProducts.setAdapter(adapter);
-                rvProducts.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+                rvProducts.setLayoutManager(gridLayoutManager);
+
+                Log.d("gg: ", "finished async");
             });
         });
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+
+        rvProducts.setAdapter(null);
+        rvProducts = null;
+        gridLayoutManager = null;
     }
 }
