@@ -1,6 +1,7 @@
 package com.example.Khanalas_food;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -27,6 +28,13 @@ public class ContentActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //if the user is not logged in
+        //starting the login activity
+        if (!SharedPrefManager.getInstance(this).isLoggedIn()) {
+            finish();
+            startActivity(new Intent(this, LoginActivity.class));
+        }
 
         com.example.Khanalas_food.databinding.ActivityContentBinding binding = ActivityContentBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -81,6 +89,10 @@ public class ContentActivity extends AppCompatActivity {
                     getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_content,
                             new AboutUsFragment()).commit();
                     drawer.closeDrawers();
+                    break;
+                case R.id.nav_log_out:
+                    finish();
+                    SharedPrefManager.getInstance(getApplicationContext()).logout();
                     break;
                 default:
                     break;
