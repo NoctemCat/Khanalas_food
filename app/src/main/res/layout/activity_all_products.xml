@@ -7,7 +7,7 @@
     tools:context=".AllProductsActivity">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/activ_all_prod_frag_con"
+        android:id="@+id/fragment_holder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"

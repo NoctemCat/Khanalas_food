@@ -21,23 +21,17 @@ public class MainActivity extends AppCompatActivity {
         btnNewProduct = (Button) findViewById(R.id.btnCreateProduct);
 
         // view products click event
-        btnViewProducts.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Launching All products Activity
-                Intent i = new Intent(getApplicationContext(), AllProducts.class);
-                startActivity(i);
-            }
+        btnViewProducts.setOnClickListener(view -> {
+            // Launching All products Activity
+            Intent i = new Intent(getApplicationContext(), AllProductsActivity.class);
+            startActivity(i);
         });
 
         // view products click event
-        btnNewProduct.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Launching create new product activity
-                Intent i = new Intent(getApplicationContext(), NewProductActivity.class);
-                startActivity(i);
-            }
+        btnNewProduct.setOnClickListener(view -> {
+            // Launching create new product activity
+            Intent i = new Intent(getApplicationContext(), NewProductActivity.class);
+            startActivity(i);
         });
     }
 }

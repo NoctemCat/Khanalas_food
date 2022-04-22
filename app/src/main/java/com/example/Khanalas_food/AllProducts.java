@@ -1,12 +1,16 @@
 package com.example.Khanalas_food;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,7 +27,7 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class AllProducts extends AppCompatActivity {
+public class AllProducts extends Fragment {
     // url to get all products list
     private static final String url_all_products = "http://192.168.0.62:81/get_all_products.php";
 
@@ -38,13 +42,24 @@ public class AllProducts extends AppCompatActivity {
     JSONArray productsJSON = null;
     ArrayList<Product> products = new ArrayList<>();
 
-    Context context = this;
+    RecyclerView rvProducts;
+
+    public AllProducts() {
+        super(R.layout.all_products);
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.all_products, container, false);
+        rvProducts = (RecyclerView) view.findViewById(R.id.rvProducts);
+        return view;
+    }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.all_products);
-
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         // Lookup the recyclerview in activity layout
 //        new AllProducts.LoadAllProducts().execute();
 
@@ -123,10 +138,9 @@ public class AllProducts extends AppCompatActivity {
 
             handler.post(() -> {
                 //UI Thread work here
-                RecyclerView rvProducts = (RecyclerView) findViewById(R.id.rvProducts);
                 ProductsAdapter adapter = new ProductsAdapter(products);
                 rvProducts.setAdapter(adapter);
-                rvProducts.setLayoutManager(new GridLayoutManager(context, 2));
+                rvProducts.setLayoutManager(new GridLayoutManager(getActivity(), 2));
             });
         });
     }
