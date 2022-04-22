@@ -1,7 +1,6 @@
 package com.example.Khanalas_food;
 
 import android.content.Context;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -19,8 +18,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
@@ -74,7 +71,7 @@ public class AllProducts extends AppCompatActivity {
                     BufferedReader in = new BufferedReader(new InputStreamReader(
                             connection.getInputStream()));
                     String inputLine;
-                    StringBuffer response = new StringBuffer();
+                    StringBuilder response = new StringBuilder();
 
                     while ((inputLine = in.readLine()) != null) {
                         response.append(inputLine);
@@ -85,43 +82,43 @@ public class AllProducts extends AppCompatActivity {
                 } else {
                     Log.d("Get line: ", "GET request didn't work");
                 }
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (ProtocolException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
+            } catch (IOException | JSONException e) {
                 e.printStackTrace();
             }
 
-            // Check your log cat for JSON reponse
-            Log.d("All Products: ", json.toString());
-            try {
-                // Checking for SUCCESS TAG
-                int success = json.getInt(TAG_SUCCESS);
+            // Check your log cat for JSON response
+            if (json != null) {
+                try {
+                    Log.d("All Products: ", json.toString());
+                    // Checking for SUCCESS TAG
+                    int success;
+                    success = json.getInt(TAG_SUCCESS);
 
-                if (success == 1) {
-                    // products found
-                    // Getting Array of Products
-                    productsJSON = json.getJSONArray(TAG_PRODUCTS);
+                    if (success == 1) {
+                        // products found
+                        // Getting Array of Products
+                        productsJSON = json.getJSONArray(TAG_PRODUCTS);
 
-                    // looping through All Products
-                    for (int i = 0; i < productsJSON.length(); i++) {
-                        JSONObject c = productsJSON.getJSONObject(i);
+                        // looping through All Products
+                        for (int i = 0; i < productsJSON.length(); i++) {
+                            JSONObject c = productsJSON.getJSONObject(i);
 
-                        // Storing each json item in variable
-                        int id = c.getInt(TAG_PID);
-                        String name = c.getString(TAG_NAME);
-                        int price = c.getInt(TAG_PRICE);
+                            // Storing each json item in variable
+                            int id = c.getInt(TAG_PID);
+                            String name = c.getString(TAG_NAME);
+                            int price = c.getInt(TAG_PRICE);
 
-                        products.add(new Product(id, name, price));
+                            products.add(new Product(id, name, price));
+                        }
+                    } else {
+                        Log.d("All Products: ", "no products found");
                     }
-                } else {
-                    Log.d("All Products: ", "no products found");
+                } catch (JSONException | NullPointerException e) {
+                    e.printStackTrace();
                 }
-            } catch (JSONException e) {
-                e.printStackTrace();
+            }
+            else {
+                Log.d("All Products: ", "json is null");
             }
 
             handler.post(() -> {
