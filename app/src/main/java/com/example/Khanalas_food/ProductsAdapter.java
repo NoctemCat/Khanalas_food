@@ -18,17 +18,16 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
     public ProductsAdapter() {
     }
     // Pass in the contact array into the constructor
-    public ProductsAdapter(List<Product> products) {
+    public ProductsAdapter( List<Product> products) {
         mProducts = products;
     }
 
     @NonNull
     @Override
-    public ProductsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
-        LayoutInflater inflater = LayoutInflater.from(context.getApplicationContext());
+    public ProductsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
 
-        View contactView = inflater.inflate(R.layout.grid_card, parent, false);
+        View contactView = inflater.inflate(R.layout.grid_card, viewGroup, false);
 
         ViewHolder viewHolder = new ViewHolder(contactView);
         Log.d("gg", "createViewHolder");

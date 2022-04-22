@@ -1,5 +1,6 @@
 package com.example.Khanalas_food.ui.showproducts;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,6 +31,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -45,10 +48,9 @@ public class AllProductsFragment extends Fragment {
 
     // products JSONArray
     JSONArray productsJSON = null;
-    ArrayList<Product> products = new ArrayList<>();
+    private MutableLiveData<ArrayList<Product>> products = new MutableLiveData<ArrayList<Product>>();
 
     RecyclerView rvProducts;
-    RecyclerView.LayoutManager gridLayoutManager;
 
     public AllProductsFragment() {
         super(R.layout.all_products);
@@ -61,15 +63,12 @@ public class AllProductsFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.all_products, container, false);
         rvProducts = (RecyclerView) view.findViewById(R.id.rvProducts);
-        gridLayoutManager = new GridLayoutManager(getContext(), 2, LinearLayoutManager.VERTICAL, false);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2, LinearLayoutManager.VERTICAL, false);
         rvProducts.setLayoutManager(gridLayoutManager);
-
-        products.add(new Product(12, "dsd", 123));
-        products.add(new Product(22, "ddd", 222));
-        ProductsAdapter adapter = new ProductsAdapter(products);
-        rvProducts.setAdapter(adapter);
+        rvProducts.setAdapter(new ProductsAdapter(products.getValue()));
 
         Log.d("gg","create allproducts");
+
         return view;
     }
 
@@ -116,6 +115,7 @@ public class AllProductsFragment extends Fragment {
                 e.printStackTrace();
             }
 
+            ArrayList<Product> prods = new ArrayList<Product>();
             // Check your log cat for JSON response
             if (json != null) {
                 try {
@@ -138,7 +138,7 @@ public class AllProductsFragment extends Fragment {
                             String name = c.getString(TAG_NAME);
                             int price = c.getInt(TAG_PRICE);
 
-                            products.add(new Product(id, name, price));
+                            prods.add(new Product(id, name, price));
                         }
                     } else {
                         Log.d("All Products: ", "no products found");
@@ -146,16 +146,13 @@ public class AllProductsFragment extends Fragment {
                 } catch (JSONException | NullPointerException e) {
                     e.printStackTrace();
                 }
-            }
-            else {
+            } else {
                 Log.d("All Products: ", "json is null");
             }
 
             handler.post(() -> {
                 //UI Thread work here
-                ProductsAdapter adapter = new ProductsAdapter(products);
-                rvProducts.setAdapter(adapter);
-                rvProducts.setLayoutManager(gridLayoutManager);
+                rvProducts.setAdapter(new ProductsAdapter(prods));
 
                 Log.d("gg: ", "finished async");
             });
@@ -168,6 +165,5 @@ public class AllProductsFragment extends Fragment {
 
         rvProducts.setAdapter(null);
         rvProducts = null;
-        gridLayoutManager = null;
     }
 }

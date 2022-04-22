@@ -2,8 +2,11 @@ package com.example.Khanalas_food;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
@@ -13,6 +16,12 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.Khanalas_food.databinding.ActivityContentBinding;
+import com.example.Khanalas_food.ui.cart.CartFragment;
+import com.example.Khanalas_food.ui.delivery.DeliveryFragment;
+import com.example.Khanalas_food.ui.gallery.GalleryFragment;
+import com.example.Khanalas_food.ui.home.HomeFragment;
+import com.example.Khanalas_food.ui.showproducts.AllProductsFragment;
+import com.example.Khanalas_food.ui.slideshow.SlideshowFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
@@ -26,37 +35,92 @@ public class ContentActivity extends AppCompatActivity {
 
         binding = ActivityContentBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        setSupportActionBar(binding.appBarContent.toolbar);
+//        setSupportActionBar(binding.appBarContent.toolbar);
 
         DrawerLayout drawer = binding.drawerLayout;
-        final NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_content_content);
-        final NavController navController = navHostFragment.getNavController();
-        mAppBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph())
-                .setOpenableLayout(drawer)
-                .build();
+        Toolbar toolbar = binding.appBarContent.toolbar;
+//        final NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_content_content);
+//        final NavController navController = navHostFragment.getNavController();
+//        mAppBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph())
+//                .setOpenableLayout(drawer)
+//                .build();
+//
+//        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+//        NavigationUI.setupWithNavController(navigationView, navController);
+//        NavigationUI.setupWithNavController(bottom, navController);
 
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+        // set custom toggle menu to open and close drawer
+        ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+                R.string.navigation_drawer_open,
+                R.string.navigation_drawer_close);
+        //set menu icon
+        drawerToggle.setHomeAsUpIndicator(R.drawable.ic_menu_camera);
+        drawerToggle.setDrawerIndicatorEnabled(false);
+        drawerToggle.setToolbarNavigationClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawer.openDrawer(GravityCompat.START);
+            }
+        });
+
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_content,
+                    new HomeFragment()).commit();
+        }
 
         NavigationView navigationView = binding.navView;
-        NavigationUI.setupWithNavController(navigationView, navController);
+        navigationView.setNavigationItemSelectedListener(item->{
+            switch (item.getItemId()) {
+                case R.id.nav_home:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_content,
+                            new HomeFragment()).commit();
+                    drawer.closeDrawers();
+                    break;
+                case R.id.nav_gallery:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_content,
+                            new GalleryFragment()).commit();
+                    drawer.closeDrawers();
+                    break;
+                case R.id.nav_slideshow:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_content,
+                            new SlideshowFragment()).commit();
+                    drawer.closeDrawers();
+                    break;
+                default:
+                    break;
+            }
+            return true;
+        });
 
         BottomNavigationView bottom = binding.appBarContent.navBottomView;
-        NavigationUI.setupWithNavController(bottom, navController);
-
-        navigationView.setNavigationItemSelectedListener(item->{
-            int size = bottom.getMenu().size();
-            for (int i = 0; i < size; i++) {
-                bottom.getMenu().getItem(i).setCheckable(false);
+        bottom.setOnItemSelectedListener(item->{
+            switch (item.getItemId()) {
+                case R.id.nav_products:
+                    getSupportFragmentManager().beginTransaction()
+                            .setReorderingAllowed(true)
+                            .replace(R.id.nav_host_fragment_content_content, new ScrollingFragment())
+                            .commit();
+                    getSupportFragmentManager().beginTransaction()
+                            .setReorderingAllowed(true)
+                            .add(R.id.nav_host_fragment_content_content, AllProductsFragment.class, null)
+                            .commit();
+                    drawer.closeDrawers();
+                    break;
+                case R.id.nav_delivery:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_content,
+                            new DeliveryFragment()).commit();
+                    drawer.closeDrawers();
+                    break;
+                case R.id.nav_cart:
+                    getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_content,
+                            new CartFragment()).commit();
+                    drawer.closeDrawers();
+                    break;
+                default:
+                    break;
             }
-            drawer.closeDrawer(GravityCompat.START);
-            return NavigationUI.onNavDestinationSelected(item, navController);
+            return true;
         });
-    }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_content);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-                || super.onSupportNavigateUp();
     }
 }
