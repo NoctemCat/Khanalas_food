@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class AllProductsFragment extends Fragment {
+public class ProductsFragment extends Fragment {
     // url to get all products list
 
     // JSON Node names
@@ -50,7 +50,7 @@ public class AllProductsFragment extends Fragment {
     RecyclerView rvProducts;
     String product_type = "";
 
-    public AllProductsFragment() {
+    public ProductsFragment() {
         super(R.layout.fragment_all_products);
     }
 

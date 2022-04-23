@@ -22,9 +22,9 @@ import java.util.List;
 /**
  * A fragment representing a list of Items.
  */
-public class ProductTypeFragment extends Fragment {
+public class ProductTypesFragment extends Fragment {
 
-    public ProductTypeFragment() {
+    public ProductTypesFragment() {
     }
 
     @Nullable

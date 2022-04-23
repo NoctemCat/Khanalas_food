@@ -44,7 +44,8 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_menu_gallery" />
+            android:src="@drawable/ic_menu_gallery"
+            android:contentDescription="TODO" />
 
         <TextView
             android:id="@+id/name"
@@ -74,5 +75,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/name" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_buy"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="В корзину"
+            android:textSize="16sp"
+            app:backgroundTint="@color/green_color"
+            app:cornerRadius="16dp"
+            card_view:ignore="TextContrastCheck,TextContrastCheck" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

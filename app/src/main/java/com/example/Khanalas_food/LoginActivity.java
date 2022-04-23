@@ -128,7 +128,5 @@ public class LoginActivity extends AppCompatActivity {
 
         UserLogin ul = new UserLogin();
         ul.execute();
-
-        ul.getStatus();
     }
 }

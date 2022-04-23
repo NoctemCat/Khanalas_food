@@ -25,7 +25,7 @@
 
     <fragment
         android:id="@+id/nav_products"
-        android:name="com.example.Khanalas_food.ui.products.AllProductsFragment"
+        android:name="com.example.Khanalas_food.ui.products.ProductsFragment"
         android:label=""
         tools:layout="@layout/fragment_all_products" />
 

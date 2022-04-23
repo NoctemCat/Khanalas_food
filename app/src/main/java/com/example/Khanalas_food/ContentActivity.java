@@ -15,7 +15,7 @@ import com.example.Khanalas_food.databinding.ActivityContentBinding;
 import com.example.Khanalas_food.ui.cart.CartFragment;
 import com.example.Khanalas_food.ui.delivery.DeliveryFragment;
 import com.example.Khanalas_food.ui.help.HelpFragment;
-import com.example.Khanalas_food.ui.product_type.ProductTypeFragment;
+import com.example.Khanalas_food.ui.product_type.ProductTypesFragment;
 import com.example.Khanalas_food.ui.settings.SettingsFragment;
 import com.example.Khanalas_food.ui.about_us.AboutUsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -59,11 +59,11 @@ public class ContentActivity extends AppCompatActivity {
 //                    .commit();
 //            getSupportFragmentManager().beginTransaction()
 //                    .setReorderingAllowed(true)
-//                    .add(R.id.nav_host_fragment_content_content, AllProductsFragment.class, null)
+//                    .add(R.id.nav_host_fragment_content_content, ProductsFragment.class, null)
 //                    .commit();
                 getSupportFragmentManager().beginTransaction()
                     .setReorderingAllowed(true)
-                    .replace(R.id.nav_host_fragment_content_content, new ProductTypeFragment())
+                    .replace(R.id.nav_host_fragment_content_content, new ProductTypesFragment())
                     .commit();
             mCurrentFragId = R.id.nav_products;
         }
@@ -115,7 +115,7 @@ public class ContentActivity extends AppCompatActivity {
                 case R.id.nav_products:
                     getSupportFragmentManager().beginTransaction()
                             .setReorderingAllowed(true)
-                            .replace(R.id.nav_host_fragment_content_content, new ProductTypeFragment())
+                            .replace(R.id.nav_host_fragment_content_content, new ProductTypesFragment())
                             .commit();
                         drawer.closeDrawers();
                     break;

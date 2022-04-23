@@ -15,9 +15,9 @@ $db = new DB_CONNECT();
  
 if(isset($_GET['type'])){
     $type = $_GET['type'];
-    $result = mysqli_query($db->con, "SELECT *FROM products WHERE `type` = '$type'") or die(mysqli_error());
+    $result = mysqli_query($db->con, "SELECT *FROM products WHERE `type` = '$type' AND count > 0") or die(mysqli_error());
 }else{
-    $result = mysqli_query($db->con, "SELECT *FROM products") or die(mysqli_error());
+    $result = mysqli_query($db->con, "SELECT *FROM products WHERE count > 0") or die(mysqli_error());
 }
 // get all products from products table
  

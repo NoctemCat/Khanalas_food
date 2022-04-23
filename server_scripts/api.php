@@ -38,8 +38,8 @@ $name = $_POST['name'];
 
 //checking if the user is already exist with this username or email
 //as the email and username should be unique for every user 
-$stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
-$stmt->bind_param("s", $email);
+$stmt = $conn->prepare("SELECT id FROM users WHERE login = ?");
+$stmt->bind_param("s", $login);
 $stmt->execute();
 $stmt->store_result();
 
@@ -58,8 +58,8 @@ $stmt->bind_param("ssssss", $login, $password, $email, $phone, $address, $name);
 if($stmt->execute()){
 
 //fetching the user back 
-$stmt = $conn->prepare("SELECT id, id, login, email, phone, address, name FROM users WHERE email = ?"); 
-$stmt->bind_param("s",$email);
+$stmt = $conn->prepare("SELECT id, id, login, email, phone, address, name FROM users WHERE login = ?"); 
+$stmt->bind_param("s",$login);
 $stmt->execute();
 $stmt->bind_result($userid, $id, $login, $email, $phone, $address, $name);
 $stmt->fetch();

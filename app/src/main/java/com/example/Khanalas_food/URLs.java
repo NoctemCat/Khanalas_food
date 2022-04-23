@@ -8,4 +8,8 @@ public class URLs {
 
     public static final String URL_ALL_PRODUCTS = "http://192.168.0.62:81/get_all_products.php";
 
+    public static final String ROOT_CART_URL = "http://192.168.0.62:81/api_cart.php?apicall=";
+    public static final String URL_ADD_TO_CART= ROOT_CART_URL + "add";
+
+
 }

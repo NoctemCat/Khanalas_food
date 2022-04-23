@@ -1,7 +1,6 @@
 package com.example.Khanalas_food.ui.product_type;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,13 +9,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.Khanalas_food.EmptyFragment;
 import com.example.Khanalas_food.R;
-import com.example.Khanalas_food.ui.products.AllProductsFragment;
-import com.example.Khanalas_food.ui.products.Product;
+import com.example.Khanalas_food.ui.products.ProductsFragment;
 
 import java.util.List;
 
@@ -44,7 +41,7 @@ public class ProductTypesAdapter extends RecyclerView.Adapter<ProductTypesAdapte
                     .commit();
             fragmentManager.beginTransaction()
                     .setReorderingAllowed(true)
-                    .add(R.id.nav_host_fragment_content_content, AllProductsFragment.class, bundle)
+                    .add(R.id.nav_host_fragment_content_content, ProductsFragment.class, bundle)
                     .commit();
         });
 
