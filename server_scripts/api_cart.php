@@ -110,7 +110,7 @@ if(isset($_GET['apicall'])){
                 $count = null;
                 $address = null;
                 $time = null;
-                $stmt->bind_result($cart_id, $prod_id, $user_id, $count, $address,$time);
+                $stmt->bind_result($cart_id, $prod_id, $user_id, $prod_name, $count, $address,$time);
                 while($stmt->fetch()){
                     $product = array(
                         'cart_id'=>$cart_id, 
@@ -131,7 +131,22 @@ if(isset($_GET['apicall'])){
         break;
 
         case 'buy':
+            if(isTheseParametersAvailable(array('user_id'))){
+                $user_id = $_POST['user_id'];
 
+                $stmt = $conn->prepare("DELETE FROM `cart` WHERE `user_id` = ?");
+                $stmt->bind_param("s", $user_id);
+
+                if($stmt->execute()){
+                    $stmt->close();
+                    
+                    $response['error'] = false; 
+                    $response['message'] = 'Successfuly bought'; 
+                }else{
+                    $response['error'] = true; 
+                    $response['message'] = 'User didnt bought anything';
+                }
+            }
         break;
 
         default: 
