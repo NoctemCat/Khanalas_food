@@ -77,7 +77,7 @@
             app:layout_constraintTop_toTopOf="@id/name" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_buy"
+            android:id="@+id/btn_buy_all"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="В корзину"

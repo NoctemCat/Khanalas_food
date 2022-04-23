@@ -1,15 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cart_product_rc"
-    android:name="com.example.Khanalas_food.ui.product_type.CartProductFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginLeft="16dp"
     android:layout_marginTop="60dp"
     android:layout_marginRight="16dp"
-    android:layout_marginBottom="70dp"
-    app:layoutManager="LinearLayoutManager"
-    tools:context=".ui.cart_products.CartProductsFragment"
-    tools:listitem="@layout/fragment_cart_product_item" />
+    android:layout_marginBottom="70dp">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cart_product_rc"
+        android:name="com.example.Khanalas_food.ui.product_type.CartProductFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:context=".ui.cart_products.CartProductsFragment"
+        tools:listitem="@layout/fragment_cart_product_item" />
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/btn_buy_all"
+        android:text="Оформить заказ"
+        android:textSize="16sp"
+        app:backgroundTint="@color/green_color"
+        app:cornerRadius="16dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

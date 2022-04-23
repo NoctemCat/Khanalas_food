@@ -1,5 +1,6 @@
 package com.example.Khanalas_food.ui.cart_products;
 
+import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -24,6 +25,7 @@ import com.example.Khanalas_food.URLs;
 import com.example.Khanalas_food.User;
 import com.example.Khanalas_food.ui.products.Product;
 import com.example.Khanalas_food.ui.products.ProductsAdapter;
+import com.google.android.material.button.MaterialButton;
 import com.google.api.client.util.DateTime;
 
 import org.json.JSONArray;
@@ -61,6 +63,7 @@ public class CartProductsFragment extends Fragment {
 
 //    CartProductsAdapter mAdapter;
     RecyclerView cartProductsView;
+    MaterialButton btnBuyAll;
 
     public CartProductsFragment() {
         super(R.layout.fragment_cart_product);
@@ -73,13 +76,60 @@ public class CartProductsFragment extends Fragment {
         cartProductsView = (RecyclerView) view.findViewById(R.id.cart_product_rc);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         cartProductsView.setLayoutManager(layoutManager);
-//        mAdapter = new CartProductsAdapter(cartProducts);
+
+        btnBuyAll = (MaterialButton) view.findViewById(R.id.btn_buy_all);
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         User user = SharedPrefManager.getInstance(getContext()).getUser();
+
+        btnBuyAll.setOnClickListener(viewbtn->{
+            class BuyAllCart extends AsyncTask<Void, Void, String> {
+
+                @Override
+                protected String doInBackground(Void... voids) {
+                    //creating request handler object
+                    RequestHandler requestHandler = new RequestHandler();
+
+                    //creating request parameters
+                    HashMap<String, String> params = new HashMap<>();
+                    params.put("user_id", Integer.toString(user.getId()));
+
+                    //returing the response
+                    return requestHandler.sendPostRequest(URLs.URL_BUY_CART, params);
+                }
+
+                @Override
+                protected void onPostExecute(String s) {
+                    super.onPostExecute(s);
+
+                    try {
+                        JSONObject obj = new JSONObject(s);
+
+                        cartProductsView.setAdapter(new CartProductsAdapter(new ArrayList<CartProduct>()));
+
+                        final Activity activity = getActivity();
+                        if(activity != null) {
+                            if (!obj.getBoolean("error")) {
+                                Toast.makeText(getContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(getContext(), "Some error occurred", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            //executing the async task
+            BuyAllCart bac = new BuyAllCart();
+            bac.execute();
+        });
+
 
         class AddToCart extends AsyncTask<Void, Void, String> {
 
@@ -129,12 +179,15 @@ public class CartProductsFragment extends Fragment {
                     }
                     cartProductsView.setAdapter(new CartProductsAdapter(cartProducts));
 
-                    //if no error in response
-                    if (!obj.getBoolean("error")) {
-                        Toast.makeText(getContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(getContext(), "Some error occurred", Toast.LENGTH_SHORT).show();
+                    final Activity activity = getActivity();
+                    if(activity != null) {
+                        if (!obj.getBoolean("error")) {
+                            Toast.makeText(getContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getContext(), "Some error occurred", Toast.LENGTH_SHORT).show();
+                        }
                     }
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

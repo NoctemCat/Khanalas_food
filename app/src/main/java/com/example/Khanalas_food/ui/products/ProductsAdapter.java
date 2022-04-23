@@ -1,8 +1,6 @@
 package com.example.Khanalas_food.ui.products;
 
-import android.content.Intent;
 import android.os.AsyncTask;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +11,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.Khanalas_food.ContentActivity;
 import com.example.Khanalas_food.R;
 import com.example.Khanalas_food.RequestHandler;
 import com.example.Khanalas_food.SharedPrefManager;
@@ -25,7 +22,6 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
 public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHolder> {
     private final List<Product> mProducts;
@@ -130,7 +126,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ViewHo
             nameTextView = (TextView) itemView.findViewById(R.id.name);
             priceTextView = (TextView) itemView.findViewById(R.id.price);
             countTextView = (TextView) itemView.findViewById(R.id.count);
-            addToCart = (Button) itemView.findViewById(R.id.btn_buy);
+            addToCart = (Button) itemView.findViewById(R.id.btn_buy_all);
         }
     }
 }
