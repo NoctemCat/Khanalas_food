@@ -9,6 +9,7 @@
     android:layout_marginLeft="16dp"
     android:layout_marginTop="60dp"
     android:layout_marginRight="16dp"
+    android:layout_marginBottom="70dp"
     app:layoutManager="LinearLayoutManager"
     tools:context=".ui.cart_products.CartProductsFragment"
     tools:listitem="@layout/fragment_cart_product_item" />

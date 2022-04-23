@@ -44,7 +44,6 @@ public class ProductTypesAdapter extends RecyclerView.Adapter<ProductTypesAdapte
                     .add(R.id.nav_host_fragment_content_content, ProductsFragment.class, bundle)
                     .commit();
         });
-
         return new ViewHolder(contactView);
     }
 
@@ -56,6 +55,7 @@ public class ProductTypesAdapter extends RecyclerView.Adapter<ProductTypesAdapte
         bdNameTV.setText(product.getBDName());
         TextView NameTV = holder.NameTV;
         NameTV.setText(product.getName());
+
     }
 
     @Override
@@ -67,7 +67,6 @@ public class ProductTypesAdapter extends RecyclerView.Adapter<ProductTypesAdapte
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView bdNameTV;
         public TextView NameTV;
-
 
         public ViewHolder(View itemView) {
             // Stores the itemView in a public final member variable that can be used

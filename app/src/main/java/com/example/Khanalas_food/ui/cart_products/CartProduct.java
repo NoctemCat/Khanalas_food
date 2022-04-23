@@ -26,6 +26,9 @@ public class CartProduct {
     public int getProdId() { return mProdId; }
     public String getProdName() { return mProdName; }
     public int getCount() { return mCount; }
+    public  void setCount(int num){this.mCount = num;}
     public String getAddress() { return mAddress; }
+    public  void setAddress(String address){this.mAddress = address;}
     public String getTime() { return mTime; }
+    public  void setTime(String time){this.mTime = time;}
 }

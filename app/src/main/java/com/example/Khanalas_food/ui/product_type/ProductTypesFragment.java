@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.Khanalas_food.ContentActivity;
 import com.example.Khanalas_food.R;
 
 import java.util.ArrayList;
@@ -45,6 +46,7 @@ public class ProductTypesFragment extends Fragment {
         productTypes.add(new ProductType(4, "wild", "Продукты из дикоросов"));
 
         rvProductTypes.setAdapter(new ProductTypesAdapter(productTypes));
+        ((ContentActivity)getActivity()).setmCurrentFragId(R.layout.fragment_products);
         return view;
     }
 }

@@ -25,6 +25,10 @@ import com.google.android.material.navigation.NavigationView;
 public class ContentActivity extends AppCompatActivity {
     private int mCurrentFragId;
 
+    public void setmCurrentFragId(int mCurrentFragId) {
+        this.mCurrentFragId = mCurrentFragId;
+    }
+
     @SuppressLint("NonConstantResourceId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {

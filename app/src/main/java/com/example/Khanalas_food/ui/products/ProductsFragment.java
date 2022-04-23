@@ -51,7 +51,7 @@ public class ProductsFragment extends Fragment {
     String product_type = "";
 
     public ProductsFragment() {
-        super(R.layout.fragment_all_products);
+        super(R.layout.fragment_products);
     }
 
     @Nullable
@@ -61,7 +61,7 @@ public class ProductsFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         product_type =  getArguments().getString("product_type");
 
-        View view = inflater.inflate(R.layout.fragment_all_products, container, false);
+        View view = inflater.inflate(R.layout.fragment_products, container, false);
         rvProducts = (RecyclerView) view.findViewById(R.id.rvProducts);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2, LinearLayoutManager.VERTICAL, false);
         rvProducts.setLayoutManager(gridLayoutManager);
