@@ -13,6 +13,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.Khanalas_food.databinding.ActivityContentBinding;
 import com.example.Khanalas_food.ui.cart.CartFragment;
+import com.example.Khanalas_food.ui.cart_products.CartProductsFragment;
 import com.example.Khanalas_food.ui.delivery.DeliveryFragment;
 import com.example.Khanalas_food.ui.help.HelpFragment;
 import com.example.Khanalas_food.ui.product_type.ProductTypesFragment;
@@ -125,8 +126,11 @@ public class ContentActivity extends AppCompatActivity {
                     drawer.closeDrawers();
                     break;
                 case R.id.nav_cart:
+//                    getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_content,
+//                            new CartFragment()).commit();
+
                     getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_content,
-                            new CartFragment()).commit();
+                            new CartProductsFragment()).commit();
                     drawer.closeDrawers();
                     break;
                 default:

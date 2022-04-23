@@ -9,9 +9,9 @@ public class CartProduct {
     private String mProdName;
     private int mCount;
     private String mAddress;
-    private DateTime mTime;
+    private String mTime;
 
-    public CartProduct(int id, int userid, int prodId, String prodName, int count, String address, DateTime time){
+    public CartProduct(int id, int userid, int prodId, String prodName, int count, String address, String time){
         this.mId = id;
         this.mUserId = userid;
         this.mProdId = prodId;
@@ -27,5 +27,5 @@ public class CartProduct {
     public String getProdName() { return mProdName; }
     public int getCount() { return mCount; }
     public String getAddress() { return mAddress; }
-    public DateTime getTime() { return mTime; }
+    public String getTime() { return mTime; }
 }

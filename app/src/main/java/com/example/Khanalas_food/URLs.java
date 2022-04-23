@@ -10,6 +10,6 @@ public class URLs {
 
     public static final String ROOT_CART_URL = "http://192.168.0.62:81/api_cart.php?apicall=";
     public static final String URL_ADD_TO_CART= ROOT_CART_URL + "add";
-
+    public static final String URL_GET_CART = ROOT_CART_URL + "getuser";
 
 }

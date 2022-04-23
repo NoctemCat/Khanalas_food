@@ -1,5 +1,6 @@
 package com.example.Khanalas_food.ui.cart_products;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,11 +26,11 @@ public class CartProductsAdapter extends RecyclerView.Adapter<CartProductsAdapte
     @Override
     public CartProductsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
-
         View contactView = inflater.inflate(R.layout.fragment_cart_product_item, viewGroup, false);
-        return new ViewHolder(viewGroup);
+        return new ViewHolder(contactView);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull CartProductsAdapter.ViewHolder holder, int position) {
         CartProduct product = mCartProducts.get(position);
